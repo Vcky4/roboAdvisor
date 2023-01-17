@@ -39,7 +39,10 @@ const Portfolio = ({ backgroundStyle }) => {
     <>
       <View
         style={[backgroundStyle, { padding: 20 }]}>
-        <Text >RoboAdvisor</Text>
+        <Text style={{
+          fontSize: 22,
+          fontFamily: 'NunitoSans-SemiBold'
+        }}>RoboAdvisor</Text>
       </View>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
