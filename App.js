@@ -38,9 +38,7 @@ const Portfolio = ({ backgroundStyle }) => {
       contentInsetAdjustmentBehavior="automatic"
       style={backgroundStyle}>
       <View
-        style={{
-          backgroundColor: isDarkMode ? '#0000' : '#fff',
-        }}>
+        style={[backgroundStyle]}>
 
       </View>
     </ScrollView>
