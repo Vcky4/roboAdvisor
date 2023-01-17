@@ -148,7 +148,7 @@ export default Portfolio = ({ backgroundStyle }) => {
               marginBottom: 20,
               alignSelf: 'center'
             }}
-              source={require('./assets/images/profile.png')} />
+              source={require('../assets/images/profile.png')} />
             <Text style={{
               fontSize: 16,
               fontFamily: 'NunitoSans-SemiBold',
