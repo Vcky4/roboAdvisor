@@ -67,7 +67,7 @@ const Portfolio = ({ backgroundStyle }) => {
             source={require('./assets/images/profile.png')} />
           <Text style={{
             fontSize: 16,
-            fontFamily: 'NunitoSans-Regular',
+            fontFamily: 'NunitoSans-SemiBold',
             color: colors.black
           }}>Risk Score: {score}</Text>
           <View style={{
@@ -77,7 +77,7 @@ const Portfolio = ({ backgroundStyle }) => {
             marginTop:5
           }}>
             <Slider
-              style={{ width: '100%', height: 30 }}
+              style={{ width: '100%', height: 20 }}
               minimumValue={0}
               maximumValue={10}
               minimumTrackTintColor="#A89AD3"
@@ -107,6 +107,12 @@ const Portfolio = ({ backgroundStyle }) => {
               }}>10</Text>
             </View>
           </View>
+          <Text style={{
+            fontSize: 16,
+            fontFamily: 'NunitoSans-SemiBold',
+            color: colors.black,
+            marginTop:20
+          }}>Your Portfolio</Text>
         </View>
       </ScrollView>
     </>
