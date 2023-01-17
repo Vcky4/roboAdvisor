@@ -7,6 +7,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Image
 } from 'react-native';
 
 import { RiskContext, RiskContextProvider } from './context/Storage.js';
@@ -51,8 +52,15 @@ const Portfolio = ({ backgroundStyle }) => {
         <View
           style={[backgroundStyle, {
             flex: 1,
+            alignItems: 'center',
           }]}>
-
+          <Image style={{
+            height: 64,
+            width: 64,
+            resizeMode: 'contain',
+            marginBottom:20
+          }}
+            source={require('./assets/images/profile.png')} />
         </View>
       </ScrollView>
     </>
