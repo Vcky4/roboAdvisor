@@ -52,15 +52,21 @@ const Portfolio = ({ backgroundStyle }) => {
         <View
           style={[backgroundStyle, {
             flex: 1,
-            alignItems: 'center',
+            padding: 20
           }]}>
           <Image style={{
             height: 64,
             width: 64,
             resizeMode: 'contain',
-            marginBottom:20
+            marginBottom: 20,
+            alignSelf: 'center'
           }}
             source={require('./assets/images/profile.png')} />
+          <Text style={{
+            fontSize: 16,
+            fontFamily: 'NunitoSans-Regular',
+            color: colors.black
+          }}>Risk Score</Text>
         </View>
       </ScrollView>
     </>
