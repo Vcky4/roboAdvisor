@@ -45,14 +45,14 @@ const Portfolio = ({ backgroundStyle }) => {
             style={{
               width: 30,
               justifyContent: 'center',
-              alignContent: 'center', 
+              alignContent: 'center',
             }}>
             <Text style={{
-              textAlign:'center',
+              textAlign: 'center',
               fontSize: 14,
               color: colors.black,
-              
-            }} >{renderItem(t, selected).title}</Text>
+
+            }} >{renderItem(t, selected).symbol}</Text>
             <View style={{
               backgroundColor: colors.primary,
               height: renderItem(t, selected).value + '%'
@@ -116,7 +116,7 @@ const Portfolio = ({ backgroundStyle }) => {
               minimumTrackTintColor="#A89AD3"
               maximumTrackTintColor="#DDD4FB"
               thumbTintColor={colors.primary}
-              onSlidingComplete={(value) => {
+              onValueChange={(value) => {
                 setScore(parseInt(value))
               }}
 
@@ -170,27 +170,27 @@ const Portfolio = ({ backgroundStyle }) => {
 function renderItem(index, selected) {
   let item
   switch (index) {
-    case 1: item = { value: selected.nigerianStock, title: 'NS' };
+    case 1: item = { value: selected.nigerianStock, title: 'Nigerian Stock', symbol: 'NS' };
       break;
-    case 2: item = { value: selected.foriengnStock, title: 'FS' };
+    case 2: item = { value: selected.foriengnStock, title: 'Foriengn Stock', symbol: 'FS' };
       break;
-    case 3: item = { value: selected.techStock, title: 'TS' };
+    case 3: item = { value: selected.techStock, title: 'Tech Stock', symbol: 'TS' };
       break;
-    case 4: item = { value: selected.emergingStock, title: 'ES' };
+    case 4: item = { value: selected.emergingStock, title: 'Emerging Stock', symbol: 'ES' };
       break;
-    case 5: item = { value: selected.nigerianBond, title: 'NB' };
+    case 5: item = { value: selected.nigerianBond, title: 'Nigerian Bond', symbol: 'NB' };
       break;
-    case 6: item = { value: selected.foriengnBond, title: 'FB' };
+    case 6: item = { value: selected.foriengnBond, title: 'Foriengn Bond', symbol: 'FB' };
       break;
-    case 7: item = { value: selected.commodity, title: 'CO' };
+    case 7: item = { value: selected.commodity, title: 'Commodity', symbol: 'CO' };
       break;
-    case 8: item = { value: selected.realEstate, title: 'RE' };
+    case 8: item = { value: selected.realEstate, title: 'Real Estate', symbol: 'RE' };
       break;
-    case 9: item = { value: selected.tbills, title: 'Tbi' };
+    case 9: item = { value: selected.tbills, title: 'Tbills', symbol: 'Tbi' };
       break;
-    default: item = { value: selected.alternative, title: 'Alt' };
+    default: item = { value: selected.alternative, title: 'Alternative', symbol: 'Alt' };
   }
-  return { value: parseInt(item.value) * 2, title: item.title }
+  return { value: parseInt(item.value) * 2, title: item.title, symbol: item.symbol }
 
 }
 
