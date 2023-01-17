@@ -7,17 +7,16 @@ import {
   Text,
   useColorScheme,
   View,
-  Image
+  Image,
+  Dimensions,
+  Animated
 } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { BarChart } from "react-native-gifted-charts";
 
 
 import { RiskContext, RiskContextProvider } from './context/Storage.js';
 import colors from './assets/colors/colors.js';
 import endpoints from './assets/endpoint/endpoints.js';
-import { Dimensions } from "react-native";
-const screenWidth = Dimensions.get("window").width;
 
 const Portfolio = ({ backgroundStyle }) => {
   const { risks, addRisk } = useContext(RiskContext);
@@ -35,15 +34,44 @@ const Portfolio = ({ backgroundStyle }) => {
       // setLoading(false);
     }
   };
-  const data=[ {value:50}, {value:80, color: 'red'}, {value:90}, {value:70}, {value:70}, {value:70} ]
-
+  const [selected, setSelected] = useState(null)
+  const bars = []
+  if (selected) {
+    for (var t = 1; t < 11; t++) {
+      if (renderItem(t, selected).value > 0) {
+        bars.push(
+          <View
+            key={t}
+            style={{
+              width: 30,
+              justifyContent: 'center',
+              alignContent: 'center', 
+            }}>
+            <Text style={{
+              textAlign:'center',
+              fontSize: 14,
+              color: colors.black,
+              
+            }} >{renderItem(t, selected).title}</Text>
+            <View style={{
+              backgroundColor: colors.primary,
+              height: renderItem(t, selected).value + '%'
+            }} />
+          </View>
+        );
+      }
+    }
+  }
 
   useEffect(() => {
     getRiskScore();
   }, []);
   useEffect(() => {
     console.log('risk', risks);
-  }, [risks]);
+    if (risks.length > 0) {
+      setSelected(risks.find((item) => item.riskScore == score.toString()))
+    }
+  }, [score, risks]);
   return (
     <>
       <View
@@ -91,7 +119,7 @@ const Portfolio = ({ backgroundStyle }) => {
               onSlidingComplete={(value) => {
                 setScore(parseInt(value))
               }}
-              
+
             />
             <View style={{
               flexDirection: 'row',
@@ -118,16 +146,52 @@ const Portfolio = ({ backgroundStyle }) => {
             color: colors.black,
             marginTop: 20
           }}>Your Portfolio</Text>
-          <BarChart 
-          data = {data} 
-          initialSpacing= {20}
-          color={colors.primary}
-       
-          />
+          <View style={{
+            height: 250,
+            width: "100%",
+            justifyContent: 'space-evenly',
+            borderColor: colors.black,
+            borderBottomWidth: 1,
+            borderStartWidth: 1,
+            alignItems: 'flex-end',
+            flexDirection: 'row',
+            marginTop: 10,
+          }}>
+
+            {bars}
+
+          </View>
         </View>
       </ScrollView>
     </>
   )
+}
+
+function renderItem(index, selected) {
+  let item
+  switch (index) {
+    case 1: item = { value: selected.nigerianStock, title: 'NS' };
+      break;
+    case 2: item = { value: selected.foriengnStock, title: 'FS' };
+      break;
+    case 3: item = { value: selected.techStock, title: 'TS' };
+      break;
+    case 4: item = { value: selected.emergingStock, title: 'ES' };
+      break;
+    case 5: item = { value: selected.nigerianBond, title: 'NB' };
+      break;
+    case 6: item = { value: selected.foriengnBond, title: 'FB' };
+      break;
+    case 7: item = { value: selected.commodity, title: 'CO' };
+      break;
+    case 8: item = { value: selected.realEstate, title: 'RE' };
+      break;
+    case 9: item = { value: selected.tbills, title: 'Tbi' };
+      break;
+    default: item = { value: selected.alternative, title: 'Alt' };
+  }
+  return { value: parseInt(item.value) * 2, title: item.title }
+
 }
 
 function App() {

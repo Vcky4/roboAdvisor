@@ -14,9 +14,6 @@
     "@react-native-community/slider": "^4.4.0",
     "react": "18.2.0",
     "react-native": "0.71.0",
-    "react-native-gifted-charts": "^1.2.42",
-    "react-native-linear-gradient": "^2.6.2",
-    "react-native-svg": "^13.7.0",
     "react-native-svg-transformer": "^1.0.0"
   },
   "devDependencies": {
