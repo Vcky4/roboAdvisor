@@ -8,7 +8,7 @@ import {
 import Slider from '@react-native-community/slider';
 
 
-import { RiskContext } from './context/Storage.js';
+import { RiskContext } from '../context/Storage.js';
 import colors from './assets/colors/colors.js';
 import endpoints from './assets/endpoint/endpoints.js';
 import renderItem from './utill/renderUtill.js';
