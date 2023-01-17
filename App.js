@@ -34,14 +34,22 @@ const Portfolio = ({ backgroundStyle }) => {
     console.log('risk', risks);
   }, [risks]);
   return (
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
-      style={backgroundStyle}>
+    <>
       <View
-        style={[backgroundStyle]}>
-
+        style={[backgroundStyle, { padding: 20 }]}>
+        <Text >RoboAdvisor</Text>
       </View>
-    </ScrollView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <View
+          style={[backgroundStyle, {
+            flex: 1,
+          }]}>
+
+        </View>
+      </ScrollView>
+    </>
   )
 }
 
