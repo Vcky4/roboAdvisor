@@ -54,12 +54,62 @@ const Portfolio = ({ backgroundStyle }) => {
 
             }} >{renderItem(t, selected).symbol}</Text>
             <View style={{
-              backgroundColor: colors.primary,
+              backgroundColor: colors.secondary,
               height: renderItem(t, selected).value + '%'
             }} />
           </View>
         );
       }
+    }
+  }
+
+  const rows = []
+  if (selected) {
+    for (var t = 1; t < 11; t++) {
+      rows.push(
+        <View
+          key={t}
+          style={{
+            width: '100%',
+            justifyContent: 'center',
+            alignContent: 'center',
+            borderRadius: 8,
+            elevation: 2,
+            padding: 10,
+            marginTop: 16
+          }}>
+
+          <View style={{
+            width: '100%',
+            backgroundColor: "rgba(221,212,251,0.55)",
+          }}>
+            <View style={{
+              backgroundColor: colors.secondary,
+              height: 36,
+              width: renderItem(t, selected).value + '%'
+            }} />
+          </View>
+         <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignContent: 'center'
+         }}>
+         <Text style={{
+            fontSize: 16,
+            fontFamily: 'NunitoSans-SemiBold',
+            color: colors.black,
+            marginTop: 5
+          }}>{renderItem(t, selected).title}</Text>
+          <Text style={{
+            fontSize: 16,
+            fontFamily: 'NunitoSans-SemiBold',
+            color: colors.black,
+            marginTop: 5
+          }}>{renderItem(t, selected).value / 2}%</Text>
+         </View>
+        </View>
+      );
+
     }
   }
 
@@ -88,7 +138,8 @@ const Portfolio = ({ backgroundStyle }) => {
         <View
           style={[backgroundStyle, {
             flex: 1,
-            padding: 20
+            padding: 20,
+            marginBottom:60
           }]}>
           <Image style={{
             height: 64,
@@ -116,7 +167,7 @@ const Portfolio = ({ backgroundStyle }) => {
               minimumTrackTintColor="#A89AD3"
               maximumTrackTintColor="#DDD4FB"
               thumbTintColor={colors.primary}
-              onValueChange={(value) => {
+              onSlidingComplete={(value) => {
                 setScore(parseInt(value))
               }}
 
@@ -160,6 +211,15 @@ const Portfolio = ({ backgroundStyle }) => {
 
             {bars}
 
+          </View>
+          <Text style={{
+            fontSize: 16,
+            fontFamily: 'NunitoSans-SemiBold',
+            color: colors.black,
+            marginTop: 20
+          }}>Break down</Text>
+          <View>
+            {rows}
           </View>
         </View>
       </ScrollView>
