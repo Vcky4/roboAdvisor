@@ -9,6 +9,8 @@ import {
   View,
   Image
 } from 'react-native';
+import Slider from '@react-native-community/slider';
+
 
 import { RiskContext, RiskContextProvider } from './context/Storage.js';
 import colors from './assets/colors/colors.js';
@@ -16,6 +18,7 @@ import endpoints from './assets/endpoint/endpoints.js';
 
 const Portfolio = ({ backgroundStyle }) => {
   const { risks, addRisk } = useContext(RiskContext);
+  const [score, setScore] = useState(0)
   const getRiskScore = async () => {
     try {
       const response = await fetch(`${endpoints.baseUrl}${endpoints.riskScore}`);
@@ -66,7 +69,44 @@ const Portfolio = ({ backgroundStyle }) => {
             fontSize: 16,
             fontFamily: 'NunitoSans-Regular',
             color: colors.black
-          }}>Risk Score</Text>
+          }}>Risk Score: {score}</Text>
+          <View style={{
+            paddingVertical: 10,
+            elevation: 2,
+            borderRadius: 8,
+            marginTop:5
+          }}>
+            <Slider
+              style={{ width: '100%', height: 30 }}
+              minimumValue={0}
+              maximumValue={10}
+              minimumTrackTintColor="#A89AD3"
+              maximumTrackTintColor="#DDD4FB"
+              thumbTintColor={colors.primary}
+              onSlidingComplete={(value) => {
+                setScore(parseInt(value))
+              }}
+
+            />
+            <View style={{
+              flexDirection: 'row',
+              flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingHorizontal: 10,
+            }}>
+              <Text style={{
+                fontSize: 16,
+                fontFamily: 'NunitoSans-Regular',
+                color: colors.black
+              }}>0</Text>
+               <Text style={{
+                fontSize: 16,
+                fontFamily: 'NunitoSans-Regular',
+                color: colors.black
+              }}>10</Text>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </>
