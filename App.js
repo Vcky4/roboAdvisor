@@ -41,7 +41,8 @@ const Portfolio = ({ backgroundStyle }) => {
         style={[backgroundStyle, { padding: 20 }]}>
         <Text style={{
           fontSize: 22,
-          fontFamily: 'NunitoSans-SemiBold'
+          fontFamily: 'NunitoSans-Bold',
+          color: colors.black
         }}>RoboAdvisor</Text>
       </View>
       <ScrollView
