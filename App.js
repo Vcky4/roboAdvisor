@@ -10,11 +10,14 @@ import {
   Image
 } from 'react-native';
 import Slider from '@react-native-community/slider';
+import { BarChart } from "react-native-gifted-charts";
 
 
 import { RiskContext, RiskContextProvider } from './context/Storage.js';
 import colors from './assets/colors/colors.js';
 import endpoints from './assets/endpoint/endpoints.js';
+import { Dimensions } from "react-native";
+const screenWidth = Dimensions.get("window").width;
 
 const Portfolio = ({ backgroundStyle }) => {
   const { risks, addRisk } = useContext(RiskContext);
@@ -32,6 +35,8 @@ const Portfolio = ({ backgroundStyle }) => {
       // setLoading(false);
     }
   };
+  const data=[ {value:50}, {value:80, color: 'red'}, {value:90}, {value:70}, {value:70}, {value:70} ]
+
 
   useEffect(() => {
     getRiskScore();
@@ -74,7 +79,7 @@ const Portfolio = ({ backgroundStyle }) => {
             paddingVertical: 10,
             elevation: 2,
             borderRadius: 8,
-            marginTop:5
+            marginTop: 5
           }}>
             <Slider
               style={{ width: '100%', height: 20 }}
@@ -86,7 +91,7 @@ const Portfolio = ({ backgroundStyle }) => {
               onSlidingComplete={(value) => {
                 setScore(parseInt(value))
               }}
-
+              
             />
             <View style={{
               flexDirection: 'row',
@@ -100,7 +105,7 @@ const Portfolio = ({ backgroundStyle }) => {
                 fontFamily: 'NunitoSans-Regular',
                 color: colors.black
               }}>0</Text>
-               <Text style={{
+              <Text style={{
                 fontSize: 16,
                 fontFamily: 'NunitoSans-Regular',
                 color: colors.black
@@ -111,8 +116,14 @@ const Portfolio = ({ backgroundStyle }) => {
             fontSize: 16,
             fontFamily: 'NunitoSans-SemiBold',
             color: colors.black,
-            marginTop:20
+            marginTop: 20
           }}>Your Portfolio</Text>
+          <BarChart 
+          data = {data} 
+          initialSpacing= {20}
+          color={colors.primary}
+       
+          />
         </View>
       </ScrollView>
     </>
