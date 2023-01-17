@@ -10,12 +10,14 @@ import {
 } from 'react-native';
 
 import { RiskContext, RiskContextProvider } from './context/Storage.js';
+import colors from './assets/colors/colors.js';
+import endpoints from './assets/endpoint/endpoints.js';
 
 const Portfolio = ({ backgroundStyle }) => {
   const { risks, addRisk } = useContext(RiskContext);
   const getRiskScore = async () => {
     try {
-      const response = await fetch('https://robo-advisor-one.vercel.app/api/risk-score');
+      const response = await fetch(`${endpoints.baseUrl}${endpoints.riskScore}`);
       const json = await response.json();
       // setData(json.riskScore);
       addRisk(json.riskScore);
@@ -57,7 +59,7 @@ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? '#0000' : '#fff',
+    backgroundColor: isDarkMode ? colors.black : colors.white,
   };
 
   return (
